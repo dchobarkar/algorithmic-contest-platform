@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:docker": "pnpm run prisma:docker && yarn dev",
+    "prisma:docker": "cd packages/db && pnpm prisma db push --force-reset && pnpm prisma db seed",
+    "start:web": "cd apps/web && pnpm run start",
+    "start:sweeper": "cd apps/sweeper && pnpm run start"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.4.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@icons-pack/react-simple-icons": "^9.5.0",
+    "@prisma/client": "^5.15.0"
+  }
+}
