@@ -10,13 +10,13 @@ type SubmissionWithTestcases = Prisma.SubmissionGetPayload<{
 }>;
 
 export async function updateMemoryAndExecutionTime(
-  submission: SubmissionWithTestcases
+  submission: SubmissionWithTestcases,
 ) {
   const pendingTestcases = submission.testcases.filter(
-    (testcase) => testcase.status_id === 1 || testcase.status_id === 2
+    (testcase) => testcase.status_id === 1 || testcase.status_id === 2,
   );
   const failedTestcases = submission.testcases.filter(
-    (testcase) => testcase.status_id !== 3
+    (testcase) => testcase.status_id !== 3,
   );
 
   if (pendingTestcases.length === 0) {
@@ -29,11 +29,11 @@ export async function updateMemoryAndExecutionTime(
         status: accepted ? "AC" : "REJECTED",
         time: Math.max(
           ...submission.testcases.map((testcase) =>
-            Number(testcase.time || "0")
-          )
+            Number(testcase.time || "0"),
+          ),
         ),
         memory: Math.max(
-          ...submission.testcases.map((testcase) => testcase.memory || 0)
+          ...submission.testcases.map((testcase) => testcase.memory || 0),
         ),
       },
       include: {
@@ -69,7 +69,7 @@ export async function updateContest(submission: SubmissionWithTestcases) {
     contestSubmission.problemId,
     contestSubmission.problem.difficulty,
     contestSubmission.activeContest?.startTime,
-    contestSubmission.activeContest?.endTime
+    contestSubmission.activeContest?.endTime,
   );
 
   await db.contestSubmission.upsert({

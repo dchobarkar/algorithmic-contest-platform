@@ -18,30 +18,35 @@ export function Appbar() {
         <CodeIcon className="h-6 w-6" />
         <span className="text-lg font-bold">Code100x</span>
       </Link>
+
       <nav className="hidden md:flex items-center gap-6">
         <Link href="/contests" className="hover:underline" prefetch={false}>
           Contests
         </Link>
+
         <Link href="/problems" className="hover:underline" prefetch={false}>
           Problems
         </Link>
+
         <Link href="/standings" className="hover:underline" prefetch={false}>
           Standings
         </Link>
       </nav>
+
       {!isLoading && session?.user && (
         <div className="flex items-center gap-4">
           <ModeToggle />
+
           <Button onClick={() => signOut()}>Logout</Button>
         </div>
       )}
 
       {!isLoading && !session?.user && (
         <div className="flex items-center gap-4">
-        <ModeToggle />
-        <Button onClick={() => signIn()}>Sign in</Button>
+          <ModeToggle />
+
+          <Button onClick={() => signIn()}>Sign in</Button>
         </div>
-      
       )}
 
       {isLoading && <div className="flex items-center gap-4"></div>}

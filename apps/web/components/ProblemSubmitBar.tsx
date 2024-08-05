@@ -20,7 +20,9 @@ import { signIn, useSession } from "next-auth/react";
 import { submissions as SubmissionsType } from "@prisma/client";
 import { Turnstile } from "@marsidev/react-turnstile";
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY || "0x4AAAAAAAc4qhUEsytXspC_";
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY ||
+  "0x4AAAAAAAc4qhUEsytXspC_";
 
 enum SubmitStatus {
   SUBMIT = "SUBMIT",
@@ -58,7 +60,8 @@ export const ProblemSubmitBar = ({
               defaultValue="problem"
               className="rounded-md p-1"
               value={activeTab}
-              onValueChange={setActiveTab}>
+              onValueChange={setActiveTab}
+            >
               <TabsList className="grid grid-cols-2 w-full">
                 <TabsTrigger value="problem">Submit</TabsTrigger>
                 <TabsTrigger value="submissions">Submissions</TabsTrigger>
@@ -81,7 +84,7 @@ function Submissions({ problem }: { problem: IProblem }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `/api/submission/bulk?problemId=${problem.id}`
+        `/api/submission/bulk?problemId=${problem.id}`,
       );
       setSubmissions(response.data.submissions || []);
     };
@@ -103,7 +106,7 @@ function SubmitProblem({
   contestId?: string;
 }) {
   const [language, setLanguage] = useState(
-    Object.keys(LANGUAGE_MAPPING)[0] as string
+    Object.keys(LANGUAGE_MAPPING)[0] as string,
   );
   const [code, setCode] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<string>(SubmitStatus.SUBMIT);
@@ -115,7 +118,7 @@ function SubmitProblem({
     const defaultCode: { [key: string]: string } = {};
     problem.defaultCode.forEach((code) => {
       const language = Object.keys(LANGUAGE_MAPPING).find(
-        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId
+        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId,
       );
       if (!language) return;
       defaultCode[language] = code.code;
@@ -176,7 +179,8 @@ function SubmitProblem({
       <Select
         value={language}
         defaultValue="cpp"
-        onValueChange={(value) => setLanguage(value)}>
+        onValueChange={(value) => setLanguage(value)}
+      >
         <SelectTrigger>
           <SelectValue placeholder="Select language" />
         </SelectTrigger>
@@ -193,7 +197,7 @@ function SubmitProblem({
           height={"60vh"}
           value={code[language]}
           theme="vs-dark"
-          onMount={() => { }}
+          onMount={() => {}}
           options={{
             fontSize: 14,
             scrollBeyondLastLine: false,
@@ -207,19 +211,20 @@ function SubmitProblem({
         />
       </div>
       <div className="flex justify-end">
-        {process.env.NODE_ENV === "production" ?
-          < Turnstile
+        {process.env.NODE_ENV === "production" ? (
+          <Turnstile
             onSuccess={(token: string) => {
               setToken(token);
             }}
             siteKey={TURNSTILE_SITE_KEY}
-          /> : null
-        }
+          />
+        ) : null}
         <Button
           disabled={status === SubmitStatus.PENDING}
           type="submit"
           className="mt-4 align-right"
-          onClick={session.data?.user ? submit : () => signIn()}>
+          onClick={session.data?.user ? submit : () => signIn()}
+        >
           {session.data?.user
             ? status === SubmitStatus.PENDING
               ? "Submitting"

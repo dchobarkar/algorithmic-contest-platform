@@ -6,7 +6,7 @@ import { Rubik } from "next/font/google";
 
 import { Appbar } from "../components/Appbar";
 import { Footer } from "../components/Footer";
-import { Providers,ThemeProvider } from "../providers";
+import { Providers, ThemeProvider } from "../providers";
 
 import "./globals.css";
 
@@ -29,13 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={chivo.variable + " " + rubik.variable}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        <Providers>
-          <Appbar />
-          {children}
-          <Footer />
-        </Providers>
-      </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>
+            <Appbar />
+            {children}
+            <Footer />
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

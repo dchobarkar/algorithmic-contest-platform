@@ -90,36 +90,35 @@ int main() {
   generateJava(): string {
     let inputReadIndex = 0;
     const inputReads = this.inputFields
-    .map((field , index)=>{
-      if(field.type.startsWith("list<")){
-        let javaType = this.mapTypeToJava(field.type);
-        let inputType = javaType.match(/<(.*?)>/);
-        javaType = inputType ? inputType[1] : 'Integer';
-        let parseToType = (javaType === 'Integer') ? 'Int' : javaType;
+      .map((field, index) => {
+        if (field.type.startsWith("list<")) {
+          let javaType = this.mapTypeToJava(field.type);
+          let inputType = javaType.match(/<(.*?)>/);
+          javaType = inputType ? inputType[1] : "Integer";
+          let parseToType = javaType === "Integer" ? "Int" : javaType;
 
-        return `int size_${field.name} = Integer.parseInt(lines.get(${inputReadIndex++}).trim());\n
+          return `int size_${field.name} = Integer.parseInt(lines.get(${inputReadIndex++}).trim());\n
         ${this.mapTypeToJava(field.type)} ${field.name} = new ArrayList<>(size_${field.name});\n
         String[] inputStream = lines.get(${inputReadIndex++}).trim().split("\\s+");\n
         for (String inputChar : inputStream)  {\n
           ${field.name}.add(${javaType}.parse${parseToType}(inputChar));\n
         }\n`;
-      } else {
-        let javaType = this.mapTypeToJava(field.type);
-        if(javaType === 'int'){
-          javaType = 'Integer';
+        } else {
+          let javaType = this.mapTypeToJava(field.type);
+          if (javaType === "int") {
+            javaType = "Integer";
+          } else if (javaType === "float") {
+            javaType = "Float";
+          } else if (javaType === "boolean") {
+            javaType = "Boolean";
+          } else if (javaType === "String") {
+            javaType = "String";
+          }
+          let parseToType = javaType === "Integer" ? "Int" : javaType;
+          return `${this.mapTypeToJava(field.type)} ${field.name} = ${javaType}.parse${parseToType}(lines.get(${inputReadIndex++}).trim());`;
         }
-        else if(javaType === 'float'){
-          javaType = 'Float';
-        }
-        else if(javaType === 'boolean'){
-          javaType = 'Boolean';
-        }else if(javaType === 'String'){
-          javaType = 'String';
-        }
-        let parseToType = (javaType === 'Integer') ? 'Int' : javaType;
-        return `${this.mapTypeToJava(field.type)} ${field.name} = ${javaType}.parse${parseToType}(lines.get(${inputReadIndex++}).trim());`;
-      }
-    }).join("\n  ");
+      })
+      .join("\n  ");
     const outputType = this.mapTypeToJava(this.outputFields[0].type);
     const functionCall = `${outputType} result = ${this.functionName}(${this.inputFields.map((field) => field.name).join(", ")});`;
     const outputWrite = `System.out.println(result);`;
@@ -151,7 +150,7 @@ public class Main {
         }
         return lines;
     }
-}`
+}`;
   }
 
   generateJs(): string {
@@ -192,7 +191,7 @@ ${outputWrite}
       })
       .join("\n  ");
     const containsVector = this.inputFields.find((field) =>
-      field.type.startsWith("list<")
+      field.type.startsWith("list<"),
     );
     const outputType = this.mapTypeToRust(this.outputFields[0].type);
     const functionCall = `let result = ${this.functionName}(${this.inputFields.map((field) => field.name).join(", ")});`;
@@ -212,8 +211,8 @@ fn main() -> io::Result<()> {
   ${outputWrite}
   Ok(())
 }${
-  containsVector
-    ? `\nfn parse_input(mut input: Lines, size_arr: usize) -> Vec<i32> {
+      containsVector
+        ? `\nfn parse_input(mut input: Lines, size_arr: usize) -> Vec<i32> {
     let arr: Vec<i32> = input
         .next()
         .unwrap_or_default()
@@ -227,8 +226,8 @@ fn main() -> io::Result<()> {
         arr
     }
 }`
-    : ""
-}
+        : ""
+    }
 `;
   }
 
@@ -277,8 +276,8 @@ fn main() -> io::Result<()> {
         return "unknown";
     }
   }
-  
-  mapTypeToJava(type:string):string {
+
+  mapTypeToJava(type: string): string {
     switch (type) {
       case "int":
         return "int";

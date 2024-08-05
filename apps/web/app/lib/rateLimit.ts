@@ -8,7 +8,7 @@ function getRedisClient() {
 export async function rateLimit(
   userId: string,
   limit: number,
-  duration: number
+  duration: number,
 ): Promise<boolean> {
   const key = `rate_limit:${userId}`;
   const currentTime = Math.floor(Date.now() / 1000);

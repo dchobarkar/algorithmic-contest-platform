@@ -1,6 +1,6 @@
 import fs from "fs";
 
-type SUPPORTED_LANGS = "js" | "cpp" | "rs"|"java";
+type SUPPORTED_LANGS = "js" | "cpp" | "rs" | "java";
 
 interface Problem {
   id: string;
@@ -9,7 +9,9 @@ interface Problem {
   outputs: string[];
 }
 
-const MOUNT_PATH = process.env.MOUNT_PATH ?? "/home/ubuntu/algorithmic-contest-platform/apps/problems";
+const MOUNT_PATH =
+  process.env.MOUNT_PATH ??
+  "/home/ubuntu/algorithmic-contest-platform/apps/problems";
 export const getProblem = async (
   problemId: string,
   languageId: SUPPORTED_LANGS,
