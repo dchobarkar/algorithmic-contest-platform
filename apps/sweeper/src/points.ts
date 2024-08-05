@@ -7,7 +7,7 @@ const POINT_MAPPING: Record<string, number> = {
 export const getPoints = async (
   difficulty: string,
   startTime: Date,
-  endTime: Date
+  endTime: Date,
 ): Promise<number> => {
   const now = new Date();
   const timeDiff = Math.abs(endTime.getTime() - startTime.getTime());

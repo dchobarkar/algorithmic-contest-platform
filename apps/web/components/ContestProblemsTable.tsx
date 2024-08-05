@@ -68,7 +68,7 @@ export const ContestProblemsTable = ({
                     <ProblemRow
                       points={
                         contest.contestSubmissions.find(
-                          (submission) => submission.problemId === problem.id
+                          (submission) => submission.problemId === problem.id,
                         )?.points || 0
                       }
                       contestId={contest.id}

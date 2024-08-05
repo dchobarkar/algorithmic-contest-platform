@@ -23,7 +23,7 @@ export async function Contest({ id }: { id: string }) {
           <ContestPoints
             points={contest.contestSubmissions.reduce(
               (acc, curr) => acc + curr.points,
-              0
+              0,
             )}
           />
         </div>
