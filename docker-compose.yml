@@ -22,7 +22,7 @@ services:
 
   db:
     image: postgres:alpine
-    container_name: db_mine
+    container_name: db_algo
     restart: always
     env_file: judge0.conf
     ports:

@@ -1,8 +1,10 @@
-import { LANGUAGE_MAPPING } from "@repo/common/language";
 import fs from "fs";
+
+import { LANGUAGE_MAPPING } from "@repo/common/language";
 import prismaClient from "../src";
 
 const MOUNT_PATH = process.env.MOUNT_PATH ?? "../../apps/problems";
+
 function promisifedReadFile(path: string): Promise<string> {
   return new Promise((resolve, reject) => {
     fs.readFile(path, "utf8", (err, data) => {
