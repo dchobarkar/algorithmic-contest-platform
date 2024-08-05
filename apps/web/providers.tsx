@@ -1,10 +1,12 @@
 "use client";
+
 import * as React from "react";
 import { ReactNode } from "react";
-import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 import { type ThemeProviderProps } from "next-themes/dist/types";
+
 import "react-toastify/dist/ReactToastify.css";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
