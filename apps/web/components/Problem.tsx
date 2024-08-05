@@ -4,9 +4,10 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link";
+
 import { Button } from "@repo/ui/button";
-import { Avatar, AvatarFallback } from "@repo/ui/avatar";
 import { Label } from "@repo/ui/label";
+import { Textarea } from "@repo/ui/textarea";
 import {
   Select,
   SelectTrigger,
@@ -14,7 +15,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@repo/ui/select";
-import { Textarea } from "@repo/ui/textarea";
 
 export default function Component() {
   return (
@@ -24,6 +24,7 @@ export default function Component() {
           <div className="prose prose-stone dark:prose-invert">
             <h2 className="text-2xl font-bold">Problem A - Watermelon</h2>
             <h3>Problem Description</h3>
+
             <p>
               One hot summer day, Polycarp bought a watermelon. He decided to
               cut it in half to eat it with his friend. However, when Polycarp
@@ -31,18 +32,23 @@ export default function Component() {
               Now Polycarp and his friend are left with a real mess. They have
               to pick up the pieces and put the watermelon back together.
             </p>
+
             <p>
               Given the number of pieces the watermelon was broken into, your
               task is to determine whether Polycarp and his friend can put the
               watermelon back together so that each of them gets at least one
               piece.
             </p>
+
             <h3>Input</h3>
+
             <p>
               The first and only line of the input contains an integer n (2 ≤ n
               ≤ 100) — the number of pieces the watermelon was broken into.
             </p>
+
             <h3>Output</h3>
+
             <p>
               If Polycarp and his friend can put the watermelon back together so
               that each of them gets at least one piece, print "YES" (without
@@ -50,6 +56,7 @@ export default function Component() {
             </p>
           </div>
         </div>
+
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
           <form>
             <div className="grid gap-4">

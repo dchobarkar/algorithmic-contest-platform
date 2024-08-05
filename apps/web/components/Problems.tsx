@@ -21,6 +21,7 @@ export async function Problems() {
             Check out the most popular programming problems on Code100x.
           </p>
         </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {problems.map((problem) => (
             <ProblemCard problem={problem} key={problem.id} />
@@ -38,18 +39,21 @@ function ProblemCard({ problem }: { problem: any }) {
         <CardTitle>{problem.title}</CardTitle>
         <CardDescription>Easy problem for beginners</CardDescription>
       </CardHeader>
+
       <CardContent>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-gray-500 dark:text-gray-400">Difficulty</p>
             <p>{problem.difficulty}</p>
           </div>
+
           <div>
             <p className="text-gray-500 dark:text-gray-400">Submissions</p>
             <p>{problem.solved}</p>
           </div>
         </div>
       </CardContent>
+
       <CardFooter>
         <PrimaryButton href={`/problem/${problem.id}`}>
           View Problem

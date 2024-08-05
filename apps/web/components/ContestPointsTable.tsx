@@ -1,4 +1,6 @@
 "use client";
+
+import { useSession } from "next-auth/react";
 import {
   Table,
   TableHeader,
@@ -7,7 +9,6 @@ import {
   TableBody,
   TableCell,
 } from "@repo/ui/table";
-import { useSession } from "next-auth/react";
 
 export function ContestPointsTable({
   contestPoints,
@@ -30,15 +31,18 @@ export function ContestPointsTable({
           <TableHead>Points</TableHead>
         </TableRow>
       </TableHeader>
+
       <TableBody>
         {contestPoints.map((contestPoint) => (
           <TableRow>
             <TableCell className={getClassName(contestPoint)}>
               {contestPoint.rank}
             </TableCell>
+
             <TableCell className={getClassName(contestPoint)}>
               {contestPoint.user.name}
             </TableCell>
+
             <TableCell className={getClassName(contestPoint)}>
               {contestPoint.points}
             </TableCell>

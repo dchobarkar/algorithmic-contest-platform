@@ -1,5 +1,3 @@
-import { PrimaryButton } from "../../components/LinkButton";
-import { getContestsWithLeaderboard } from "../db/contest";
 import {
   Table,
   TableHeader,
@@ -8,6 +6,8 @@ import {
   TableBody,
   TableCell,
 } from "@repo/ui/table";
+import { PrimaryButton } from "../../components/LinkButton";
+import { getContestsWithLeaderboard } from "../db/contest";
 
 export default async function Page() {
   const contests = await getContestsWithLeaderboard();
@@ -22,6 +22,7 @@ export default async function Page() {
           </p>
         </div>
       </div>
+
       <div>
         <ContestsTable contests={contests} />
       </div>
@@ -47,12 +48,14 @@ function ContestsTable({ contests }: { contests: IContest[] }) {
             <TableHead>Result</TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {contests.map((contest) => (
             <TableRow>
               <TableCell>{contest.id.substr(0, 8)}</TableCell>
               <TableCell>{contest.title}</TableCell>
               <TableCell>{contest.startTime.toLocaleString()}</TableCell>
+
               <TableCell>
                 <PrimaryButton href={`/standings/${contest.id}`}>
                   View

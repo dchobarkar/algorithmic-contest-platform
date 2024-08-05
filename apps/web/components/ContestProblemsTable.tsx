@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { CheckIcon } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@repo/ui/button";
 import {
   Table,
@@ -50,6 +50,7 @@ export const ContestProblemsTable = ({
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">{contest.title}</h2>
             </div>
+
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md">
               <Table>
                 <TableHeader>
@@ -61,12 +62,13 @@ export const ContestProblemsTable = ({
                     <TableHead>Solve</TableHead>
                   </TableRow>
                 </TableHeader>
+
                 <TableBody>
                   {contest.problems.map(({ problem }) => (
                     <ProblemRow
                       points={
                         contest.contestSubmissions.find(
-                          (submission) => submission.problemId === problem.id,
+                          (submission) => submission.problemId === problem.id
                         )?.points || 0
                       }
                       contestId={contest.id}
@@ -102,16 +104,19 @@ function ProblemRow({
           <div className="text-md font-bold">{title}</div>
         </div>
       </TableCell>
+
       <TableCell>
         <div className="text-sm text-gray-500">
           <span className="font-medium">{difficulty}</span>
         </div>
       </TableCell>
+
       <TableCell>
         <div className="text-sm text-gray-500">
           <span className="font-medium">{submissionCount}</span>
         </div>
       </TableCell>
+
       <TableCell>
         <div className="text-sm text-gray-500">
           <span className="font-medium">
@@ -119,6 +124,7 @@ function ProblemRow({
           </span>
         </div>
       </TableCell>
+
       <TableCell>
         <Link href={`/contest/${contestId}/problem/${id}`}>
           <Button className="w-full">Solve</Button>

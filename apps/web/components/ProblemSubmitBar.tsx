@@ -1,5 +1,15 @@
 "use client";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { CheckIcon, CircleX, ClockIcon } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 import Editor from "@monaco-editor/react";
+import { submissions as SubmissionsType } from "@prisma/client";
+import { Turnstile } from "@marsidev/react-turnstile";
+
+import { LANGUAGE_MAPPING } from "@repo/common/language";
 import { Tabs, TabsList, TabsTrigger } from "@repo/ui/tabs";
 import { Button } from "@repo/ui/button";
 import { Label } from "@repo/ui/label";
@@ -10,15 +20,8 @@ import {
   SelectContent,
   SelectItem,
 } from "@repo/ui/select";
-import { useEffect, useState } from "react";
-import { LANGUAGE_MAPPING } from "@repo/common/language";
-import axios from "axios";
+
 import { ISubmission, SubmissionTable } from "./SubmissionTable";
-import { CheckIcon, CircleX, ClockIcon } from "lucide-react";
-import { toast } from "react-toastify";
-import { signIn, useSession } from "next-auth/react";
-import { submissions as SubmissionsType } from "@prisma/client";
-import { Turnstile } from "@marsidev/react-turnstile";
 
 const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY ||
@@ -69,9 +72,11 @@ export const ProblemSubmitBar = ({
             </Tabs>
           </div>
         </div>
+
         <div className={`${activeTab === "problem" ? "" : "hidden"}`}>
           <SubmitProblem problem={problem} contestId={contestId} />
         </div>
+
         {activeTab === "submissions" && <Submissions problem={problem} />}
       </div>
     </div>
@@ -84,7 +89,7 @@ function Submissions({ problem }: { problem: IProblem }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `/api/submission/bulk?problemId=${problem.id}`,
+        `/api/submission/bulk?problemId=${problem.id}`
       );
       setSubmissions(response.data.submissions || []);
     };
@@ -106,7 +111,7 @@ function SubmitProblem({
   contestId?: string;
 }) {
   const [language, setLanguage] = useState(
-    Object.keys(LANGUAGE_MAPPING)[0] as string,
+    Object.keys(LANGUAGE_MAPPING)[0] as string
   );
   const [code, setCode] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<string>(SubmitStatus.SUBMIT);
@@ -118,7 +123,7 @@ function SubmitProblem({
     const defaultCode: { [key: string]: string } = {};
     problem.defaultCode.forEach((code) => {
       const language = Object.keys(LANGUAGE_MAPPING).find(
-        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId,
+        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId
       );
       if (!language) return;
       defaultCode[language] = code.code;

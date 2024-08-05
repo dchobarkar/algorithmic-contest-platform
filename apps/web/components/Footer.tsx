@@ -1,8 +1,9 @@
 ("");
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { SiInstagram, SiYoutube, SiX } from "@icons-pack/react-simple-icons";
 import Image from "next/image";
+import { SiInstagram, SiYoutube, SiX } from "@icons-pack/react-simple-icons";
+
 import playstore from "../public/playstore.png";
 import Logo from "../public/logo.png";
 
@@ -26,30 +27,35 @@ export const Footer = () => {
               />
             </Link>
           </div>
+
           <div className="flex flex-col justify-center my-8 md:my-0">
             <h3 className="font-semibold text-neutral-100 mb-4">Quick Links</h3>
+
             <Link
-              href={"https://app.100xdevs.com/"}
+              href={"https://darshanwebdev.com/projects"}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500 text-neutral-200"
             >
-              100xdevs
+              DarshanWebDev
             </Link>
+
             <Link
-              href={"https://github.com/code100x/daily-code/"}
+              href={"https://github.com/dchobarkar"}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500 text-neutral-200"
             >
               GitHub
             </Link>
+
             <Link
               href={"/tnc"}
               className="hover:text-blue-500 text-neutral-200"
             >
               Terms & Conditions
             </Link>
+
             <Link
               href={"/privacy-policy"}
               className="hover:text-blue-500 text-neutral-200"
@@ -60,45 +66,15 @@ export const Footer = () => {
         </div>
 
         <div className="flex flex-col justify-center">
-          <Link
-            href={
-              "https://play.google.com/store/apps/details?id=com.hundredx.devs"
-            }
-            target="_blank"
-            className="hover:text-blue-500 font-semibold  text-neutral-200 mb-4"
-          >
-            Download App
-            <Image
-              className="shadow-md mt-2"
-              src={playstore}
-              alt={"playstore"}
-              height={50}
-              width={150}
-            />
-          </Link>
           <div>
             <h4 className="text-neutral-200 font-semibold mb-2">Follow us</h4>
             <div className="flex gap-x-2">
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
-                href={"https://twitter.com/kirat_tw"}
+                href={"htthttps://x.com/barbatos_008"}
               >
                 <SiX className="text-white hover:text-blue-500" />
-              </Link>
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href={"https://www.instagram.com/kirat_ins/"}
-              >
-                <SiInstagram className="text-white hover:text-blue-500" />
-              </Link>
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href={"https://www.youtube.com/@harkirat1"}
-              >
-                <SiYoutube className="text-white hover:text-blue-500" />
               </Link>
             </div>
           </div>

@@ -16,6 +16,7 @@ export async function Contests() {
               Check out the upcoming programming contests on Codeforces.
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {upcomingContests.map((contest) => (
               <ContestCard
@@ -29,6 +30,7 @@ export async function Contests() {
           </div>
         </div>
       </section>
+
       <section className="bg-white dark:bg-gray-900 py-8 md:py-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-6">
@@ -37,6 +39,7 @@ export async function Contests() {
               Check out the previous programming contests on Codeforces.
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {pastContests.map((contest) => (
               <ContestCard

@@ -1,16 +1,12 @@
-import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
-import { JWT } from "next-auth/jwt";
 import { JWTPayload, SignJWT, importJWK } from "jose";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { JWT } from "next-auth/jwt";
+
 import { Session } from "next-auth";
 
 import { db } from "../db";
-
-interface token extends JWT {
-  uid: string;
-  jwtToken: string;
-}
 
 export interface session extends Session {
   user: {

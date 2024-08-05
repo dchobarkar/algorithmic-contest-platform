@@ -30,36 +30,43 @@ export function ContestCard({
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{title}</CardTitle>
+
           <div>
             {startTime.getTime() < Date.now() &&
             endTime.getTime() < Date.now() ? (
               <div className="text-red-500">Ended</div>
             ) : null}
+
             {isActive ? <div className="text-green-500">Active</div> : null}
+
             {endTime.getTime() < Date.now() ? (
               <div className="text-red-500">Ended</div>
             ) : null}
           </div>
         </div>
       </CardHeader>
+
       <CardContent>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-gray-500 dark:text-gray-400">
               {startTime.getTime() < Date.now() ? "Started" : "Starts in"}
             </p>
+
             <p>
               {startTime.getTime() < Date.now()
                 ? parseOldDate(new Date(startTime))
                 : parseFutureDate(new Date(startTime))}
             </p>
           </div>
+
           <div>
             <p className="text-gray-500 dark:text-gray-400">Duration</p>
             <p>{duration}</p>
           </div>
         </div>
       </CardContent>
+
       <CardFooter>
         <PrimaryButton href={`/contest/${id}`}>
           {isActive ? "Participate" : "View Contest"}
