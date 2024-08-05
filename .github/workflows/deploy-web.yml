@@ -3,8 +3,8 @@ name: Build and push Web
 on:
   push:
     branches:
-      - 'main'
-    
+      - "main"
+
 jobs:
   Deploy-web:
     name: Builds and pushes to Docker Hub
@@ -17,7 +17,7 @@ jobs:
         run: cp ./docker/web/Dockerfile .
 
       - name: Build Docker Image
-        run: docker build --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} -t 100xdevs/algo-next:${{ github.sha }} .
+        run: docker build --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} -t dchobarkar/algo-next:${{ github.sha }} .
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -26,4 +26,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push to Docker Hub
-        run: docker push 100xdevs/algo-next:${{ github.sha }}
+        run: docker push dchobarkar/algo-next:${{ github.sha }}
