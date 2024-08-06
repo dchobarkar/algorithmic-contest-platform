@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
@@ -45,7 +46,11 @@ export function Appbar() {
         <div className="flex items-center gap-4">
           <ModeToggle />
 
-          <Button onClick={() => signIn()}>Sign in</Button>
+          <Button
+            onClick={() => signIn(undefined, { callbackUrl: "/problems" })}
+          >
+            Sign in
+          </Button>
         </div>
       )}
 
