@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -13,23 +14,24 @@ async function main(contestId: string) {
     },
   });
 
-  contestSubmissions.forEach((submission) => {
-    if (userPoints.has(submission.userId)) {
-      userPoints.set(
-        submission.userId,
-        userPoints.get(submission.userId)! + submission.points,
-      );
-    } else {
-      userPoints.set(submission.userId, submission.points);
-    }
-  });
+  contestSubmissions.forEach(
+    (submission: { userId: string; points: number }) => {
+      if (userPoints.has(submission.userId)) {
+        userPoints.set(
+          submission.userId,
+          userPoints.get(submission.userId)! + submission.points,
+        );
+      } else {
+        userPoints.set(submission.userId, submission.points);
+      }
+    },
+  );
 
   const sortedUserPoints = Array.from(userPoints.entries()).sort(
     (a, b) => b[1] - a[1],
   );
 
   // clean existing leaderboard
-
   await prisma.contest.update({
     where: {
       id: contestId,

@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 
 export function Hero() {
@@ -9,6 +10,7 @@ export function Hero() {
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
               Welcome to DarshanWebDev
             </h1>
+
             <p className="text-gray-500 dark:text-gray-400 mb-6">
               Algorithmic Contest Platform is a platform for holding programming
               contests. Participate in challenges, solve problems, and climb the

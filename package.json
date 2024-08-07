@@ -16,7 +16,8 @@
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.2.5",
     "turbo": "latest",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "@types/node": "^20.4.0"
   },
   "engines": {
     "node": ">=18"

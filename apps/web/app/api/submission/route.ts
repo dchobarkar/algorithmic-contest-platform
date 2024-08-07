@@ -1,16 +1,15 @@
 import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 import { SubmissionInput } from "@repo/common/zod";
 import { LANGUAGE_MAPPING } from "@repo/common/language";
 
-import { getProblem } from "../../lib/problems";
 import { db } from "../../db";
+import { getProblem } from "../../lib/problems";
 import { authOptions } from "../../lib/auth";
 import { rateLimit } from "../../lib/rateLimit";
 
-const JUDGE0_URI = process.env.JUDGE0_URI || "https://judge.100xdevs.com";
-
+const JUDGE0_URI = process.env.JUDGE0_URI || "http://localhost:2358";
 const SECRET_KEY = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY!;
 const CLOUDFLARE_TURNSTILE_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -27,6 +26,7 @@ export async function POST(req: NextRequest) {
       },
     );
   }
+
   const userId = session.user.id;
   //using the ratelimt function from lib, 1 req per 10 seconds
   const isAllowed = await rateLimit(userId, 1, 10); // Limit to 1 requests per 10 seconds

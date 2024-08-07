@@ -1,3 +1,5 @@
+import React from "react";
+
 export function CodeIcon(props: { className?: string }) {
   return (
     <svg

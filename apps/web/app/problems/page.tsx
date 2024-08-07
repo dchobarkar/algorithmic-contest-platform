@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Problems } from "../../components/Problems";
 
 export default function Page(): JSX.Element {

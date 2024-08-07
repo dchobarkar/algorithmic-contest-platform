@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 export const ContestPoints = ({ points }: { points: number }) => {
   return (
     <main className="flex-1 md:py-8 rounded-lg shadow-md px-4 md:px-6">

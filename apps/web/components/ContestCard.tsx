@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardHeader,
@@ -5,9 +6,9 @@ import {
   CardContent,
   CardFooter,
 } from "@repo/ui/card";
-import { parseFutureDate, parseOldDate } from "../app/lib/time";
+
 import { PrimaryButton } from "./LinkButton";
-import React from "react";
+import { parseFutureDate, parseOldDate } from "../app/lib/time";
 
 interface ContestCardParams {
   title: string;
@@ -63,6 +64,7 @@ export function ContestCard({
 
           <div>
             <p className="text-gray-500 dark:text-gray-400">Duration</p>
+
             <p>{duration}</p>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { CheckIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@repo/ui/button";
@@ -56,9 +57,13 @@ export const ContestProblemsTable = ({
                 <TableHeader>
                   <TableRow>
                     <TableHead>Problem</TableHead>
+
                     <TableHead>Difficulty</TableHead>
+
                     <TableHead>Solved</TableHead>
+
                     <TableHead>Your status</TableHead>
+
                     <TableHead>Solve</TableHead>
                   </TableRow>
                 </TableHeader>

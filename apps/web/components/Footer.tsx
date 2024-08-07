@@ -1,10 +1,8 @@
-("");
-/* eslint-disable @next/next/no-img-element */
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SiInstagram, SiYoutube, SiX } from "@icons-pack/react-simple-icons";
+import { SiX } from "@icons-pack/react-simple-icons";
 
-import playstore from "../public/playstore.png";
 import Logo from "../public/logo.png";
 
 export const Footer = () => {
@@ -14,7 +12,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row w-3/5 md:justify-between">
           <div className=" ml-21 ">
             <Link
-              href={"https://app.100xdevs.com/"}
+              href={"https://darshanwebdev.com/"}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -32,7 +30,7 @@ export const Footer = () => {
             <h3 className="font-semibold text-neutral-100 mb-4">Quick Links</h3>
 
             <Link
-              href={"https://darshanwebdev.com/projects"}
+              href={"https://darshanwebdev.com"}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500 text-neutral-200"
@@ -68,6 +66,7 @@ export const Footer = () => {
         <div className="flex flex-col justify-center">
           <div>
             <h4 className="text-neutral-200 font-semibold mb-2">Follow us</h4>
+
             <div className="flex gap-x-2">
               <Link
                 target="_blank"

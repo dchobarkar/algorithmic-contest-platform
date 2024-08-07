@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Prisma } from "@prisma/client";
 
 import { db } from "./db";
@@ -13,10 +14,11 @@ export async function updateMemoryAndExecutionTime(
   submission: SubmissionWithTestcases,
 ) {
   const pendingTestcases = submission.testcases.filter(
-    (testcase) => testcase.status_id === 1 || testcase.status_id === 2,
+    (testcase: { status_id: number }) =>
+      testcase.status_id === 1 || testcase.status_id === 2,
   );
   const failedTestcases = submission.testcases.filter(
-    (testcase) => testcase.status_id !== 3,
+    (testcase: { status_id: number }) => testcase.status_id !== 3,
   );
 
   if (pendingTestcases.length === 0) {
@@ -28,12 +30,14 @@ export async function updateMemoryAndExecutionTime(
       data: {
         status: accepted ? "AC" : "REJECTED",
         time: Math.max(
-          ...submission.testcases.map((testcase) =>
+          ...submission.testcases.map((testcase: { time: any }) =>
             Number(testcase.time || "0"),
           ),
         ),
         memory: Math.max(
-          ...submission.testcases.map((testcase) => testcase.memory || 0),
+          ...submission.testcases.map(
+            (testcase: { memory: any }) => testcase.memory || 0,
+          ),
         ),
       },
       include: {
@@ -64,9 +68,6 @@ export async function updateContest(submission: SubmissionWithTestcases) {
     return;
 
   const points = await getPoints(
-    contestSubmission.activeContestId,
-    contestSubmission.userId,
-    contestSubmission.problemId,
     contestSubmission.problem.difficulty,
     contestSubmission.activeContest?.startTime,
     contestSubmission.activeContest?.endTime,

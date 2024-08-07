@@ -1,8 +1,5 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/pxkBLMqmzHi
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+import React from "react";
+import { CheckIcon, ClockIcon, CircleX } from "lucide-react";
 import {
   Table,
   TableHeader,
@@ -11,7 +8,6 @@ import {
   TableBody,
   TableCell,
 } from "@repo/ui/table";
-import { CheckIcon, ClockIcon, CircleX } from "lucide-react";
 export interface ISubmission {
   id: string;
   time: string;
@@ -76,19 +72,26 @@ export function SubmissionTable({
         <TableHeader>
           <TableRow>
             <TableHead>Submission ID</TableHead>
+
             <TableHead>Result</TableHead>
+
             <TableHead>Tests Passed</TableHead>
+
             <TableHead>Time</TableHead>
+
             <TableHead>Memory</TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {submissions.map((submission) => (
             <TableRow>
               <TableCell>{submission.id.substr(0, 8)}</TableCell>
+
               <TableCell className={getColor(submission.status)}>
                 {getIcon(submission.status)}
               </TableCell>
+
               <TableCell>
                 {
                   submission.testcases.filter(
@@ -97,7 +100,9 @@ export function SubmissionTable({
                 }
                 /{submission.testcases.length}
               </TableCell>
+
               <TableCell>{submission.time}</TableCell>
+
               <TableCell>{submission.memory}</TableCell>
             </TableRow>
           ))}

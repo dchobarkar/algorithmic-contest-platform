@@ -1,4 +1,5 @@
 import { LANGUAGE_MAPPING } from "@repo/common/language";
+
 import { addProblemsInDB } from "./updateQuestion";
 import languages from "../src/languages";
 import prismaClient from "../src";

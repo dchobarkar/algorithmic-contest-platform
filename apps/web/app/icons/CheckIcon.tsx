@@ -1,3 +1,5 @@
+import React from "react";
+
 export const CheckIcon = (props: { className?: string }) => {
   return (
     <svg

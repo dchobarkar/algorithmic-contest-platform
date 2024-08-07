@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Table,
   TableHeader,
@@ -6,8 +7,9 @@ import {
   TableBody,
   TableCell,
 } from "@repo/ui/table";
-import { PrimaryButton } from "../../components/LinkButton";
+
 import { getContestsWithLeaderboard } from "../db/contest";
+import { PrimaryButton } from "../../components/LinkButton";
 
 export default async function Page() {
   const contests = await getContestsWithLeaderboard();
@@ -17,6 +19,7 @@ export default async function Page() {
       <div className="container px-4 md:px-6">
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-2">Leaderboard</h2>
+
           <p className="text-gray-500 dark:text-gray-400">
             Check out the leaderboard
           </p>
@@ -43,8 +46,11 @@ function ContestsTable({ contests }: { contests: IContest[] }) {
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
+
             <TableHead>Contest Name</TableHead>
+
             <TableHead>Start time</TableHead>
+
             <TableHead>Result</TableHead>
           </TableRow>
         </TableHeader>
@@ -53,7 +59,9 @@ function ContestsTable({ contests }: { contests: IContest[] }) {
           {contests.map((contest) => (
             <TableRow>
               <TableCell>{contest.id.substr(0, 8)}</TableCell>
+
               <TableCell>{contest.title}</TableCell>
+
               <TableCell>{contest.startTime.toLocaleString()}</TableCell>
 
               <TableCell>

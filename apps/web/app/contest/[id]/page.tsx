@@ -1,4 +1,4 @@
-import { useParams } from "next/navigation";
+import React from "react";
 
 import { Contest } from "../../../components/Contest";
 

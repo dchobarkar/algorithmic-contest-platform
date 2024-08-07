@@ -1,3 +1,5 @@
+import React from "react";
+
 // needs to return close icon
 export const CrossIcon = (props: { className?: string }) => {
   return (

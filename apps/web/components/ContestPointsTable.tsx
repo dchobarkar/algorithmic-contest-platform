@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useSession } from "next-auth/react";
 import {
   Table,
@@ -27,7 +28,9 @@ export function ContestPointsTable({
       <TableHeader>
         <TableRow>
           <TableHead>Rank</TableHead>
+
           <TableHead>User</TableHead>
+
           <TableHead>Points</TableHead>
         </TableRow>
       </TableHeader>

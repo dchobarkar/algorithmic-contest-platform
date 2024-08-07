@@ -191,7 +191,7 @@ ${outputWrite}
       })
       .join("\n  ");
     const containsVector = this.inputFields.find((field) =>
-      field.type.startsWith("list<")
+      field.type.startsWith("list<"),
     );
     const outputType = this.mapTypeToRust(this.outputFields[0].type);
     const functionCall = `let result = ${this.functionName}(${this.inputFields.map((field) => field.name).join(", ")});`;

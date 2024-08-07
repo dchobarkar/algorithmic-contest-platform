@@ -1,13 +1,10 @@
-// This is the root layout component for your Next.js app.
-// Learn more: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
-
+import React from "react";
 import { Chivo } from "next/font/google";
 import { Rubik } from "next/font/google";
 
 import { Appbar } from "../components/Appbar";
 import { Footer } from "../components/Footer";
 import { Providers, ThemeProvider } from "../providers";
-
 import "./globals.css";
 
 const chivo = Chivo({
@@ -37,7 +34,9 @@ export default function RootLayout({
         >
           <Providers>
             <Appbar />
+
             {children}
+
             <Footer />
           </Providers>
         </ThemeProvider>

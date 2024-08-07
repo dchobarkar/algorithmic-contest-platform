@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CheckIcon, CircleX, ClockIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import Editor from "@monaco-editor/react";
-import { submissions as SubmissionsType } from "@prisma/client";
 import { Turnstile } from "@marsidev/react-turnstile";
-
+// eslint-disable-next-line
+import { submissions as SubmissionsType } from "@prisma/client";
 import { LANGUAGE_MAPPING } from "@repo/common/language";
 import { Tabs, TabsList, TabsTrigger } from "@repo/ui/tabs";
 import { Button } from "@repo/ui/button";
@@ -67,6 +67,7 @@ export const ProblemSubmitBar = ({
             >
               <TabsList className="grid grid-cols-2 w-full">
                 <TabsTrigger value="problem">Submit</TabsTrigger>
+
                 <TabsTrigger value="submissions">Submissions</TabsTrigger>
               </TabsList>
             </Tabs>
@@ -181,6 +182,7 @@ function SubmitProblem({
   return (
     <div>
       <Label htmlFor="language">Language</Label>
+
       <Select
         value={language}
         defaultValue="cpp"
@@ -189,6 +191,7 @@ function SubmitProblem({
         <SelectTrigger>
           <SelectValue placeholder="Select language" />
         </SelectTrigger>
+
         <SelectContent>
           {Object.keys(LANGUAGE_MAPPING).map((language) => (
             <SelectItem key={language} value={language}>
@@ -197,6 +200,7 @@ function SubmitProblem({
           ))}
         </SelectContent>
       </Select>
+
       <div className="pt-4 rounded-md">
         <Editor
           height={"60vh"}
@@ -215,6 +219,7 @@ function SubmitProblem({
           defaultLanguage="javascript"
         />
       </div>
+
       <div className="flex justify-end">
         {process.env.NODE_ENV === "production" ? (
           <Turnstile
@@ -224,6 +229,7 @@ function SubmitProblem({
             siteKey={TURNSTILE_SITE_KEY}
           />
         ) : null}
+
         <Button
           disabled={status === SubmitStatus.PENDING}
           type="submit"
@@ -237,6 +243,7 @@ function SubmitProblem({
             : "Login to submit"}
         </Button>
       </div>
+
       <RenderTestcase testcases={testcases} />
     </div>
   );
@@ -273,6 +280,7 @@ function RenderTestcase({ testcases }: { testcases: SubmissionsType[] }) {
           <div className="px-2 pt-2 flex justify-center">
             <div className="">Test #{index + 1}</div>
           </div>
+
           <div className="p-2 flex justify-center">
             {renderResult(testcase.status_id)}
           </div>

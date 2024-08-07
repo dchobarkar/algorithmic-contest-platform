@@ -1,6 +1,8 @@
+import React from "react";
+
+import { getProblem } from "../../../../db/problem";
 import { ProblemStatement } from "../../../../../components/ProblemStatement";
 import { ProblemSubmitBar } from "../../../../../components/ProblemSubmitBar";
-import { getProblem } from "../../../../db/problem";
 
 export default async function ProblemPage({
   params: { id, problemId },
@@ -24,6 +26,7 @@ export default async function ProblemPage({
             <ProblemStatement description={problem.description} />
           </div>
         </div>
+
         <ProblemSubmitBar contestId={id} problem={problem} />
       </main>
     </div>

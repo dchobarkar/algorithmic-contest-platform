@@ -1,7 +1,6 @@
 "use client";
 
-import * as React from "react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";

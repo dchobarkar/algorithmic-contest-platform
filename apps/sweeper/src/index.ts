@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Prisma } from "@prisma/client";
 
 import { db } from "./db";

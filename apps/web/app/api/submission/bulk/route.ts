@@ -6,6 +6,7 @@ import { authOptions } from "../../../lib/auth";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
+
   if (!session?.user) {
     return NextResponse.json(
       {
@@ -18,10 +19,8 @@ export async function GET(req: NextRequest) {
   }
 
   const url = new URL(req.url);
-
   const searchParams = new URLSearchParams(url.search);
   const problemId = searchParams.get("problemId");
-
   if (!problemId) {
     return NextResponse.json(
       {
@@ -46,7 +45,6 @@ export async function GET(req: NextRequest) {
       createdAt: "desc",
     },
   });
-
   return NextResponse.json(
     {
       submissions,

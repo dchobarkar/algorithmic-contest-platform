@@ -1,5 +1,7 @@
-import { Contests } from "./Contests";
+import React from "react";
+
 import { Hero } from "./Hero";
+import { Contests } from "./Contests";
 import { Problems } from "./Problems";
 
 export function Landing() {

@@ -1,6 +1,6 @@
 import fs from "fs";
-
 import { LANGUAGE_MAPPING } from "@repo/common/language";
+
 import prismaClient from "../src";
 
 const MOUNT_PATH = process.env.MOUNT_PATH ?? "../../apps/problems";
