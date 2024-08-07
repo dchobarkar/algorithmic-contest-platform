@@ -21,6 +21,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:packages/typescript-config
+      dotenv:
+        specifier: ^16.0.1
+        version: 16.0.3
       prettier:
         specifier: ^3.2.5
         version: 3.3.2

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { getContest } from "../app/db/contest";
 import { ContestClock } from "./ContestClock";
 import { ContestPoints } from "./ContestPoints";
@@ -9,7 +11,7 @@ export async function Contest({ id }: { id: string }) {
   if (!contest) return <div>Contest not found</div>;
 
   return (
-    <div className="grid grid-flow-row-dense gap-4 grid-cols md:grid-cols-12 gap-4 grid-cols-1 min-h-screen px-2 md:px-12">
+    <div className="grid grid-flow-row-dense gap-4 grid-cols md:grid-cols-12 grid-cols-1 min-h-screen px-2 md:px-12">
       <div className="col-span-9">
         <ContestProblemsTable contest={contest} />
       </div>
@@ -22,8 +24,8 @@ export async function Contest({ id }: { id: string }) {
         <div className="pt-2">
           <ContestPoints
             points={contest.contestSubmissions.reduce(
-              (acc, curr) => acc + curr.points,
-              0,
+              (acc: any, curr: { points: any }) => acc + curr.points,
+              0
             )}
           />
         </div>

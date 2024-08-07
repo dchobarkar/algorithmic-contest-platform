@@ -7,6 +7,7 @@ import {
 } from "@repo/ui/card";
 import { parseFutureDate, parseOldDate } from "../app/lib/time";
 import { PrimaryButton } from "./LinkButton";
+import React from "react";
 
 interface ContestCardParams {
   title: string;
