@@ -42,7 +42,7 @@ services:
     volumes:
       - ./judge0.conf:/judge0.conf:ro
       - type: bind
-        source: "/home/ubuntu/projects/algorithmic-contest-platform/apps/problems"
+        source: "/home/ubuntu/algorithmic-contest-platform/apps/problems"
         target: /dev/problems
     ports:
       - "2358:2358"
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./judge0.conf:/judge0.conf:ro
       - type: bind
-        source: "/home/ubuntu/projects/algorithmic-contest-platform/apps/problems"
+        source: "/home/ubuntu/algorithmic-contest-platform/apps/problems"
         target: /dev/problems
     privileged: true
     restart: always
