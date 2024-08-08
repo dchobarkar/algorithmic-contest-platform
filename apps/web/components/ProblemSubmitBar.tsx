@@ -90,7 +90,7 @@ function Submissions({ problem }: { problem: IProblem }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `/api/submission/bulk?problemId=${problem.id}`,
+        `/api/submission/bulk?problemId=${problem.id}`
       );
       setSubmissions(response.data.submissions || []);
     };
@@ -112,7 +112,7 @@ function SubmitProblem({
   contestId?: string;
 }) {
   const [language, setLanguage] = useState(
-    Object.keys(LANGUAGE_MAPPING)[0] as string,
+    Object.keys(LANGUAGE_MAPPING)[0] as string
   );
   const [code, setCode] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<string>(SubmitStatus.SUBMIT);
@@ -124,7 +124,7 @@ function SubmitProblem({
     const defaultCode: { [key: string]: string } = {};
     problem.defaultCode.forEach((code) => {
       const language = Object.keys(LANGUAGE_MAPPING).find(
-        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId,
+        (language) => LANGUAGE_MAPPING[language]?.internal === code.languageId
       );
       if (!language) return;
       defaultCode[language] = code.code;
@@ -234,13 +234,15 @@ function SubmitProblem({
           disabled={status === SubmitStatus.PENDING}
           type="submit"
           className="mt-4 align-right"
-          onClick={session.data?.user ? submit : () => signIn()}
+          onClick={submit}
+          // onClick={session.data?.user ? submit : () => signIn()}
         >
-          {session.data?.user
+          Submit
+          {/* {session.data?.user
             ? status === SubmitStatus.PENDING
               ? "Submitting"
               : "Submit"
-            : "Login to submit"}
+            : "Login to submit"} */}
         </Button>
       </div>
 
