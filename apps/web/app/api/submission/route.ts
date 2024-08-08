@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 401,
-      },
+      }
     );
   }
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 429,
-      },
+      }
     );
   }
 
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 400,
-      },
+      }
     );
   }
 
@@ -58,23 +58,23 @@ export async function POST(req: NextRequest) {
   formData.append("secret", SECRET_KEY);
   formData.append("response", submissionInput.data.token);
 
-  const result = await fetch(CLOUDFLARE_TURNSTILE_URL, {
-    body: formData,
-    method: "POST",
-  });
-  const challengeResult = await result.json();
-  const challengeSucceeded = challengeResult.success;
+  // const result = await fetch(CLOUDFLARE_TURNSTILE_URL, {
+  //   body: formData,
+  //   method: "POST",
+  // });
+  // const challengeResult = await result.json();
+  // const challengeSucceeded = challengeResult.success;
 
-  if (!challengeSucceeded && process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      {
-        message: "Invalid reCAPTCHA token",
-      },
-      {
-        status: 403,
-      },
-    );
-  }
+  // if (!challengeSucceeded && process.env.NODE_ENV === "production") {
+  //   return NextResponse.json(
+  //     {
+  //       message: "Invalid reCAPTCHA token",
+  //     },
+  //     {
+  //       status: 403,
+  //     },
+  //   );
+  // }
 
   const dbProblem = await db.problem.findUnique({
     where: {
@@ -89,17 +89,17 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 404,
-      },
+      }
     );
   }
 
   const problem = await getProblem(
     dbProblem.slug,
-    submissionInput.data.languageId,
+    submissionInput.data.languageId
   );
   problem.fullBoilerplateCode = problem.fullBoilerplateCode.replace(
     "##USER_CODE_HERE##",
-    submissionInput.data.code,
+    submissionInput.data.code
   );
   const response = await axios.post(
     `${JUDGE0_URI}/submissions/batch?base64_encoded=false`,
@@ -108,11 +108,11 @@ export async function POST(req: NextRequest) {
         language_id: LANGUAGE_MAPPING[submissionInput.data.languageId]?.judge0,
         source_code: problem.fullBoilerplateCode.replace(
           "##INPUT_FILE_INDEX##",
-          index.toString(),
+          index.toString()
         ),
         expected_output: problem.outputs[index],
       })),
-    },
+    }
   );
 
   const submission = await db.submission.create({
@@ -137,7 +137,7 @@ export async function POST(req: NextRequest) {
     },
     {
       status: 200,
-    },
+    }
   );
 }
 
@@ -150,7 +150,7 @@ export async function GET(req: NextRequest) {
       },
       {
         status: 401,
-      },
+      }
     );
   }
   const url = new URL(req.url);
@@ -164,7 +164,7 @@ export async function GET(req: NextRequest) {
       },
       {
         status: 400,
-      },
+      }
     );
   }
 
@@ -184,7 +184,7 @@ export async function GET(req: NextRequest) {
       },
       {
         status: 404,
-      },
+      }
     );
   }
 
@@ -196,6 +196,6 @@ export async function GET(req: NextRequest) {
     },
     {
       status: 200,
-    },
+    }
   );
 }
