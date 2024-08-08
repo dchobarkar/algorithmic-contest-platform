@@ -11,15 +11,15 @@ interface Problem {
 
 const MOUNT_PATH =
   process.env.MOUNT_PATH ??
-  "/home/ubuntu/projects/algorithmic-contest-platform/apps/problems";
+  "/home/ubuntu/algorithmic-contest-platform/apps/problems";
 
 export const getProblem = async (
   problemId: string,
-  languageId: SUPPORTED_LANGS,
+  languageId: SUPPORTED_LANGS
 ): Promise<Problem> => {
   const fullBoilderPlate = await getProblemFullBoilerplateCode(
     problemId,
-    languageId,
+    languageId
   );
   const inputs = await getProblemInputs(problemId);
   const outputs = await getProblemOutputs(problemId);
@@ -34,7 +34,7 @@ export const getProblem = async (
 
 async function getProblemFullBoilerplateCode(
   problemId: string,
-  languageId: SUPPORTED_LANGS,
+  languageId: SUPPORTED_LANGS
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     fs.readFile(
@@ -45,7 +45,7 @@ async function getProblemFullBoilerplateCode(
           reject(err);
         }
         resolve(data);
-      },
+      }
     );
   });
 }
@@ -69,17 +69,17 @@ async function getProblemInputs(problemId: string): Promise<string[]> {
                       reject(err);
                     }
                     resolve(data);
-                  },
+                  }
                 );
               });
-            }),
+            })
           )
             .then((data) => {
               resolve(data);
             })
             .catch((e) => reject(e));
         }
-      },
+      }
     );
   });
 }
@@ -103,17 +103,17 @@ async function getProblemOutputs(problemId: string): Promise<string[]> {
                       reject(err);
                     }
                     resolve(data);
-                  },
+                  }
                 );
               });
-            }),
+            })
           )
             .then((data) => {
               resolve(data);
             })
             .catch((e) => reject(e));
         }
-      },
+      }
     );
   });
 }
