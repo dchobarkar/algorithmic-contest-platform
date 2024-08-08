@@ -234,15 +234,13 @@ function SubmitProblem({
           disabled={status === SubmitStatus.PENDING}
           type="submit"
           className="mt-4 align-right"
-          onClick={submit}
-          // onClick={session.data?.user ? submit : () => signIn()}
+          onClick={session.data?.user ? submit : () => signIn()}
         >
-          Submit
-          {/* {session.data?.user
+          {session.data?.user
             ? status === SubmitStatus.PENDING
               ? "Submitting"
               : "Submit"
-            : "Login to submit"} */}
+            : "Login to submit"}
         </Button>
       </div>
 
