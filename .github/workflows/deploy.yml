@@ -29,5 +29,6 @@ jobs:
             cp packages/db/.env.example packages/db/.env
             docker-compose up --build -d
             pnpm run build
-            pnpm run start:prod
+            cd apps/web
+            nohup pnpm run start &
           EOF
