@@ -32,10 +32,14 @@ jobs:
             cp apps/web/.env.example apps/web/.env
             cp packages/db/.env.example packages/db/.env
 
-            if lsof -t -i:3000; then
-              kill $(lsof -t -i:3000)
+            PORT=3000
+              if lsof -t -i:$PORT; then
+              echo "Port $PORT in use, attempting to kill process..."
+              kill -9 $(lsof -t -i:$PORT)
+              echo "Process killed. Waiting for port to be released..."
+              sleep 5
             fi
-            
+
             docker-compose up --build -d
             
             pnpm run build
