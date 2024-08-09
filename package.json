@@ -9,6 +9,7 @@
     "dev:docker": "pnpm run prisma:docker && pnpm dev",
     "prisma:docker": "cd packages/db && pnpm prisma db push --force-reset && pnpm prisma db seed",
     "start:web": "cd apps/web && pnpm run start",
+    "start:prod": "cd apps/web && nohup pnpm run prod",
     "start:sweeper": "cd apps/sweeper && pnpm run start"
   },
   "devDependencies": {

@@ -24,8 +24,10 @@ jobs:
             cd algorithmic-contest-platform
             sudo docker-compose down
             sudo git pull origin main
-            pnpm install --production
+            pnpm install
+            cp apps/web/.env.example apps/web/.env
+            cp packages/db/.env.example packages/db/.env
             pnpm run build
             docker-compose up --build -d
-            pnpm run start:web
+            pnpm run start:prod
           EOF
