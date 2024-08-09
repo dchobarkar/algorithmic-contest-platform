@@ -22,13 +22,24 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             cd algorithmic-contest-platform
+
             sudo docker-compose down
+
             sudo git pull origin main
+
             pnpm install
+
             cp apps/web/.env.example apps/web/.env
             cp packages/db/.env.example packages/db/.env
+
+            if lsof -t -i:3000; then
+              kill $(lsof -t -i:3000)
+            fi
+            
             docker-compose up --build -d
+            
             pnpm run build
+            
             cd apps/web
             nohup pnpm run start &
           EOF
