@@ -95,7 +95,7 @@ export function SubmissionTable({
               <TableCell>
                 {
                   submission.testcases.filter(
-                    (testcase) => testcase.status === "AC",
+                    (testcase) => testcase.status === "AC"
                   ).length
                 }
                 /{submission.testcases.length}
