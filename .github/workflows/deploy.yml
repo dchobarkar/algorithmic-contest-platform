@@ -27,7 +27,7 @@ jobs:
             pnpm install
             cp apps/web/.env.example apps/web/.env
             cp packages/db/.env.example packages/db/.env
-            pnpm run build
             docker-compose up --build -d
+            pnpm run build
             pnpm run start:prod
           EOF
