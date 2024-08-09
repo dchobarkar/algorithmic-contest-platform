@@ -45,5 +45,5 @@ jobs:
             pnpm run build
             
             cd apps/web
-            nohup pnpm run start &
+            pnpm run start & disown
           EOF
