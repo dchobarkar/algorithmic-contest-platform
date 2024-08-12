@@ -1,7 +1,5 @@
 # Algorithmic Contest Platform
 
-![Project Banner](link-to-banner-image-if-any)
-
 ## About the Project
 
 Algorithmic Contest Platform is a coding platform similar to Codeforces. Users can log in and solve problems from a set of available pools. Additionally, users can participate in coding contests hosted on the platform.
